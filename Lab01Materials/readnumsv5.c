@@ -132,8 +132,7 @@ int delete_node(int val)
 				else if (ptemp == pback)
 				{
 					// node is last in the list
-					ptemp
-				}
+								}
 
 				// node is in between two nodes
 			}

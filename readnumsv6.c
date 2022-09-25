@@ -106,7 +106,7 @@ int delete_node(int val)
 	struct node *ptempPrev;
 
 	// handle case when list is empty
-	if (pback == NULL && phead == NULL)
+	if (phead == NULL)
 	{
 		// if list is empty, a node cannot be deleted
 		printf("Linked list is empty, node cannot be deleted.\n");
@@ -127,17 +127,27 @@ int delete_node(int val)
 				{
 					// node is first in the list
 					phead = phead->pnextnode;
-					printf("deleted node at head of list");
+					free(ptemp);
+					return 1;
 				}
 				else if (ptemp == pback)
 				{
 					// node is last in the list
+					ptempPrev->pnextnode = NULL;
+					free(ptemp);
+					return 1;
 				}
-
-				// node is in between two nodes
+				else
+				{
+					// node is in between two nodes
+					ptempPrev->pnextnode = ptemp->pnextnode;
+					free(ptemp);
+					return 1;
+				}
 			}
 
 			// Move to next node in the list
+			ptempPrev = ptemp;
 			ptemp = ptemp->pnextnode;
 		}
 
